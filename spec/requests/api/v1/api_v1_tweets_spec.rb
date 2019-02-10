@@ -50,7 +50,7 @@ RSpec.describe 'Api::V1::Tweets', type: :request do
       context 'regular tweet' do
         let(:tweet) { create(:tweet) }
 
-        before { get "/api/v1/tweets/#{tweet.id}" }
+        before { get "/api/v1/tweets/#{tweet.id}", headers: header_with_authentication(user) }
 
         it { expect(response).to have_http_status(:success) }
 
@@ -67,7 +67,7 @@ RSpec.describe 'Api::V1::Tweets', type: :request do
         let(:tweet_original) { create(:tweet) }
         let(:tweet) { create(:tweet, tweet_original: tweet_original) }
 
-        before { get "/api/v1/tweets/#{tweet.id}" }
+        before { get "/api/v1/tweets/#{tweet.id}", headers: header_with_authentication(user) }
 
         it { expect(response).to have_http_status(:success) }
 
@@ -96,7 +96,7 @@ RSpec.describe 'Api::V1::Tweets', type: :request do
 
   describe 'POST /api/v1/tweets' do
     context 'Unauthenticated' do
-      it_behaves_like :deny_without_authorization, :put, '/api/v1/users/-1'
+      it_behaves_like :deny_without_authorization, :post, '/api/v1/tweets'
     end
 
     context 'Authenticated' do
