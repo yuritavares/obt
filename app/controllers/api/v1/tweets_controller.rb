@@ -1,7 +1,7 @@
 module Api
   module V1
     class TweetsController < Api::V1::ApiController 
-      before_action {  current_user }
+      before_action { current_user }
       before_action :set_tweet, except: %i[create index]
       before_action :authenticate_user, except: %i[show, index]
       load_and_authorize_resource except: %i[index show create]

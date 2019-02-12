@@ -3,7 +3,8 @@ module Api
     class ApiController < ApplicationController
       include Knock::Authenticable
       include CanCan::ControllerAdditions
-
+      serialization_scope :current_user
+      
       rescue_from ActiveRecord::RecordNotFound do |msg|
         render(json: { message: msg }, status: :not_found)
       end
