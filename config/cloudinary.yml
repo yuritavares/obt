@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dm3ilvlia
+  api_key: '847514663563754'
+  api_secret: cp1ym88qUy6CCcHVVPCggcRPpg0
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dm3ilvlia
+  api_key: '847514663563754'
+  api_secret: cp1ym88qUy6CCcHVVPCggcRPpg0
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dm3ilvlia
+  api_key: '847514663563754'
+  api_secret: cp1ym88qUy6CCcHVVPCggcRPpg0
+  enhance_image_tag: true
+  static_file_support: false

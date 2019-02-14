@@ -10,52 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_122_115_230) do
+ActiveRecord::Schema.define(version: 20190213121137) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'follows', id: :serial, force: :cascade do |t|
-    t.string 'followable_type', null: false
-    t.integer 'followable_id', null: false
-    t.string 'follower_type', null: false
-    t.integer 'follower_id', null: false
-    t.boolean 'blocked', default: false, null: false
-    t.datetime 'created_at'
-    t.datetime 'updated_at'
-    t.index %w[followable_id followable_type], name: 'fk_followables'
-    t.index %w[follower_id follower_type], name: 'fk_follows'
+  create_table "follows", id: :serial, force: :cascade do |t|
+    t.string "followable_type", null: false
+    t.integer "followable_id", null: false
+    t.string "follower_type", null: false
+    t.integer "follower_id", null: false
+    t.boolean "blocked", default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["followable_id", "followable_type"], name: "fk_followables"
+    t.index ["follower_id", "follower_type"], name: "fk_follows"
   end
 
-  create_table 'tweets', force: :cascade do |t|
-    t.text 'body'
-    t.bigint 'user_id'
-    t.integer 'tweet_original_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['user_id'], name: 'index_tweets_on_user_id'
+  create_table "tweets", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id"
+    t.integer "tweet_original_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
-    t.string 'password_digest'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "photo"
   end
 
-  create_table 'votes', id: :serial, force: :cascade do |t|
-    t.string 'votable_type'
-    t.integer 'votable_id'
-    t.string 'voter_type'
-    t.integer 'voter_id'
-    t.boolean 'vote_flag'
-    t.string 'vote_scope'
-    t.integer 'vote_weight'
-    t.datetime 'created_at'
-    t.datetime 'updated_at'
-    t.index %w[votable_id votable_type vote_scope], name: 'index_votes_on_votable_id_and_votable_type_and_vote_scope'
-    t.index %w[voter_id voter_type vote_scope], name: 'index_votes_on_voter_id_and_voter_type_and_vote_scope'
+  create_table "votes", id: :serial, force: :cascade do |t|
+    t.string "votable_type"
+    t.integer "votable_id"
+    t.string "voter_type"
+    t.integer "voter_id"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
-  add_foreign_key 'tweets', 'users'
+  add_foreign_key "tweets", "users"
 end
