@@ -45,6 +45,8 @@ gem 'carrierwave-base64'
 
 gem 'cloudinary'
 
+gem 'searchkick'
+
 group :test do
   # Generate record based in a model
   gem 'factory_bot_rails', '~> 4.0'
