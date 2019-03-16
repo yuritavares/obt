@@ -46,6 +46,8 @@ gem 'carrierwave-base64'
 gem 'cloudinary'
 
 gem 'searchkick'
+#Job scheduler execution
+gem 'sidekiq-scheduler'
 
 group :test do
   # Generate record based in a model
