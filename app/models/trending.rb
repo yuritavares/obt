@@ -1,0 +1,2 @@
+class Trending < ApplicationRecord
+end
