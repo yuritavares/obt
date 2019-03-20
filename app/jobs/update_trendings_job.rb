@@ -1,4 +1,4 @@
-class UpdateTrendingsJob < ApplicationJob # >
+class UpdateTrendingsJob < ApplicationJob
   queue_as :trendings
 
   def perform

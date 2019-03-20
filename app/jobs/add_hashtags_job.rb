@@ -3,8 +3,8 @@ class AddHashtagsJob < ApplicationJob # >
 
   def perform(tweet)
     tweet.scan(/#\w+/).each do |hashtag|
-      h = DataStore.redis.get(hashtag)
-      DataStore.redis.set(hashtag, ((h)? h.to_i + 1 : 1))
+      hashtag_count = DataStore.redis.get(hashtag)
+      DataStore.redis.set(hashtag, ((hashtag_count)? hashtag_count.to_i + 1 : 1))
     end
   end
 end
